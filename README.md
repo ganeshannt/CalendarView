@@ -1,26 +1,87 @@
-Notepad++ v7.8.8 Enhancements & bug-fixes:
+I have Created and added ReadMe.This will be helpfull for the user to build and run the app.
 
-1.  Fix accented characters in ANSI files not found in "find in files" and "replace in files" commands issues.
-2.  Add an option to improve rendering special Unicode characters by using Scintilla's DirectWrite technology.
-3.  Fix URL invisible issue in dark themes.
-4.  Fix the focus not on the opening new file issue.
-5.  Fix Workspace (Project panel), Folder As Workspace and function list keep focus issue after double clicking an item.
-6.  Add Ctrl+Backspace ability to delete word for comboboxes in Find/Replace dialog.
-7.  Add ability to find-all in selected text.
-8.  Fix wrong treatment of backslashes as escape sequences in autocompletion.
-9.  Enhance "Remove Empty Lines" command: Allow scope to be limited by an active selection.
-10. Fix loading of project & session files by drag & drop not working issue.
-11. Fix block selection cursor wrong positions after typing TAB.
-12. Add confirmation prompt to "Replace all in all opened documents" command to avoid PBKAC.
+Installation
+Gradle
 
+Add it in your root build.gradle at the end of repositories:
+repositories {
+	maven { 
+	    url "https://jitpack.io"
+	}
+}
+Add the dependency:
+dependencies {
+    compile 'com.github.BlackBoxVision:material-calendar-view:v1.5.8'
+}
+Maven
 
-Included plugins:
+Add the JitPack repository to your maven file.
+<repository>
+     <id>jitpack.io</id>
+     <url>https://jitpack.io</url>
+</repository>
+Add the dependency in the form
+<dependency>
+    <groupId>com.github.BlackBoxVision</groupId>
+    <artifactId>material-calendar-view</artifactId>
+    <version>v1.5.8</version>
+</dependency>
+SBT
 
-1.  NppExport v0.2.9
-2.  Converter 4.2.1
-3.  Mime Tool 2.5
+Add it in your build.sbt at the end of resolvers:
+resolvers += "jitpack" at "https://jitpack.io"
+Add the dependency in the form:
+libraryDependencies += "com.github.BlackBoxVision" % "material-calendar-view" % "v1.5.8"
+Usage example
+In your layout.xml file:
 
+<io.blackbox_vision.materialcalendarview.view.CalendarView
+	android:id="@+id/calendar_view"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@color/colorPrimary">
+</io.blackbox_vision.materialcalendarview.view.CalendarView>
+This example shows all the possible customization around Material Calendar View:
 
-Updater (Installer only):
+<io.blackbox_vision.materialcalendarview.view.CalendarView
+	android:id="@+id/calendar_view"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	app:calendarIsMultiSelectDayEnabled="false"
+	app:calendarIsOverflowDatesVisible="true"
+	app:calendarBackgroundColor="@color/colorPrimary"
+	app:calendarTitleTextColor="@color/colorAccent"
+	app:calendarCurrentDayTextColor="@color/white"
+	app:calendarDayOfWeekTextColor="@color/grey"
+	app:calendarDayOfMonthTextColor="@android:color/white"
+	app:calendarDisabledDayBackgroundColor="@color/colorPrimary"
+	app:calendarDisabledDayTextColor="@android:color/darker_gray"
+	app:calendarSelectedDayBackgroundColor="@color/colorAccent"
+	app:calendarTitleBackgroundColor="@color/colorPrimary"
+	app:calendarWeekBackgroundColor="@color/colorPrimary"
+	app:calendarCurrentDayBackgroundColor="@color/teal500"
+	app:calendarWeekendTextColor="@color/colorAccent"
+	app:calendarButtonBackgroundColor="@color/colorAccent"
+	app:calendarWeekendDays="saturday|sunday">
+</io.blackbox_vision.materialcalendarview.view.CalendarView>
+Then, in your Activity.java or Fragment.java initialize the calendar:
 
-* WinGup (for Notepad++) v5.1.1
+calendarView = (CalendarView) findViewById(R.id.calendar_view);
+
+calendarView.shouldAnimateOnEnter(true)
+	.setFirstDayOfWeek(Calendar.MONDAY)	
+	.setOnDateClickListener(this::onDateClick)
+	.setOnMonthChangeListener(this::onMonthChange)
+	.setOnDateLongClickListener(this::onDateLongClick)
+	.setOnMonthTitleClickListener(this::onMonthTitleClick);
+
+if (calendarView.isMultiSelectDayEnabled()) {
+	calendarView.setOnMultipleDaySelectedListener(this::onMultipleDaySelected);
+}
+
+calendarView.update(Calendar.getInstance(Locale.getDefault()));
+Issues
+If you found a bug, or you have an answer, or whatever. Please, open an issue. I will do the best to fix it, or help you.
+
+Contributing
+Of course, if you see something that you want to upgrade from this library, or a bug that needs to be solved, PRs are welcome!
