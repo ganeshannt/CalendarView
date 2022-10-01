@@ -1,87 +1,45 @@
-I have Created and added ReadMe.This will be helpfull for the user to build and run the app.
 
-Installation
-Gradle
+# Android Calendar View (Android App)
 
-Add it in your root build.gradle at the end of repositories:
-repositories {
-	maven { 
-	    url "https://jitpack.io"
-	}
-}
-Add the dependency:
-dependencies {
-    compile 'com.github.BlackBoxVision:material-calendar-view:v1.5.8'
-}
-Maven
+## Overview
+In this tutorial, we’ll be discussing the Calendar Widget using the CalendarView class in our Android Application.
 
-Add the JitPack repository to your maven file.
-<repository>
-     <id>jitpack.io</id>
-     <url>https://jitpack.io</url>
-</repository>
-Add the dependency in the form
-<dependency>
-    <groupId>com.github.BlackBoxVision</groupId>
-    <artifactId>material-calendar-view</artifactId>
-    <version>v1.5.8</version>
-</dependency>
-SBT
+## Android Calendar View
+As the name suggests, a Calendar View is used to display and select dates of the Calendar. To add a CalendarView in the XML Layout do the following:
+```
+<CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+```
 
-Add it in your build.sbt at the end of resolvers:
-resolvers += "jitpack" at "https://jitpack.io"
-Add the dependency in the form:
-libraryDependencies += "com.github.BlackBoxVision" % "material-calendar-view" % "v1.5.8"
-Usage example
-In your layout.xml file:
+## This is how it looks in the Layout Design editor :
+Thumbnail:
 
-<io.blackbox_vision.materialcalendarview.view.CalendarView
-	android:id="@+id/calendar_view"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="@color/colorPrimary">
-</io.blackbox_vision.materialcalendarview.view.CalendarView>
-This example shows all the possible customization around Material Calendar View:
+![1](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-xml-design.png)
 
-<io.blackbox_vision.materialcalendarview.view.CalendarView
-	android:id="@+id/calendar_view"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	app:calendarIsMultiSelectDayEnabled="false"
-	app:calendarIsOverflowDatesVisible="true"
-	app:calendarBackgroundColor="@color/colorPrimary"
-	app:calendarTitleTextColor="@color/colorAccent"
-	app:calendarCurrentDayTextColor="@color/white"
-	app:calendarDayOfWeekTextColor="@color/grey"
-	app:calendarDayOfMonthTextColor="@android:color/white"
-	app:calendarDisabledDayBackgroundColor="@color/colorPrimary"
-	app:calendarDisabledDayTextColor="@android:color/darker_gray"
-	app:calendarSelectedDayBackgroundColor="@color/colorAccent"
-	app:calendarTitleBackgroundColor="@color/colorPrimary"
-	app:calendarWeekBackgroundColor="@color/colorPrimary"
-	app:calendarCurrentDayBackgroundColor="@color/teal500"
-	app:calendarWeekendTextColor="@color/colorAccent"
-	app:calendarButtonBackgroundColor="@color/colorAccent"
-	app:calendarWeekendDays="saturday|sunday">
-</io.blackbox_vision.materialcalendarview.view.CalendarView>
-Then, in your Activity.java or Fragment.java initialize the calendar:
+```
+calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+            }
+        });
+ ```
+ 
+This gets triggered whenever the date is changed by the user.
 
-calendarView = (CalendarView) findViewById(R.id.calendar_view);
+* i = year
+* i1 = month
+* i2 = day
+In the following section, we’ll create an android application with a custom theme and add a custom range on the CalendarView along with showing the difference between animation and non-animation date changes.
 
-calendarView.shouldAnimateOnEnter(true)
-	.setFirstDayOfWeek(Calendar.MONDAY)	
-	.setOnDateClickListener(this::onDateClick)
-	.setOnMonthChangeListener(this::onMonthChange)
-	.setOnDateLongClickListener(this::onDateLongClick)
-	.setOnMonthTitleClickListener(this::onMonthTitleClick);
 
-if (calendarView.isMultiSelectDayEnabled()) {
-	calendarView.setOnMultipleDaySelectedListener(this::onMultipleDaySelected);
-}
+## Project Structure
 
-calendarView.update(Calendar.getInstance(Locale.getDefault()));
-Issues
-If you found a bug, or you have an answer, or whatever. Please, open an issue. I will do the best to fix it, or help you.
+Thumbnail:
 
-Contributing
-Of course, if you see something that you want to upgrade from this library, or a bug that needs to be solved, PRs are welcome!
+![1](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-project-structure.png)
+
+## Output
+
+![2](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-output.gif)
