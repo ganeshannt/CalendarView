@@ -1,42 +1,44 @@
-# Advanced Scientific Calculator (Android App)
+# Android Calendar View (Android App)
 
 ## Overview
-The scientific calculator is a type of an electronic calculator in which different complex calculating methods are involved. These methods contain mathematical, scientific and some methods related to engineering. Other than that, the scientific calculators have some features similiar to ordinary calculator in which many kinds of basic calculations can be performed like addition, subtraction, multiplication, division etc. The functions which are involved in scientific calculator are scientific notations, floating point values, trigonometric functions, logarithmic function, fraction, factorial etc. The scientific calculator is used in various fields for example in astronomy, geology, physics, chemistry, somehow in biology as well. This calculator is mostly used by the students studying in school, college and university and also engineers of different sectors. 
+In this tutorial, we’ll be discussing the Calendar Widget using the CalendarView class in our Android Application.
 
-## Requirements
+## Android Calendar View
+As the name suggests, a Calendar View is used to display and select dates of the Calendar. To add a CalendarView in the XML Layout do the following:
+```
+<CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+```
 
-1.	IDE: Android Studio
-2.	Language: Java
-3.	Database: SQLite
+## This is how it looks in the Layout Design editor :
+Thumbnail:
 
-## Features
-1. It has a simple responsive UI design that can be understood easily by all users and fits with all sizes of screens. 
-2. The calculator has a standard display and it shows complicated expressions on it's display.
-3. This application has specific button for each operation.
-4. It can perform all the basic arithmetic operations (+, -, *, /). 
-5. It can calculate decimal value including floating point number. 
-6. Trigonometric functions (sin, cos, tan) and logarithmic function can be performed with it.
-7. Some super functions (!, ^, 1/x) and advanced operations like modulus (%) can be handled easily.
-8. pi (3.1416…) can be accessed directly from it.
-9. Expressions involving any combination of the above can be solved by this application.
-10. Any calculation from start to end will be found in the ‘History’ section.
+![1](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-xml-design.png)
 
-## Screenshots
+```
+calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+            }
+        });
+ ```
+ 
+This gets triggered whenever the date is changed by the user.
+
+* i = year
+* i1 = month
+* i2 = day
+In the following section, we’ll create an android application with a custom theme and add a custom range on the CalendarView along with showing the difference between animation and non-animation date changes.
+
+
+## Project Structure
 
 Thumbnail:
 
-![1](https://user-images.githubusercontent.com/30154496/82138326-70252480-9841-11ea-9ed0-167bccca5ab1.jpg)
+![1](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-project-structure.png)
 
-User Interface (UI):
+## Output
 
-![2](https://user-images.githubusercontent.com/30154496/82138329-72877e80-9841-11ea-8cd0-b989dc926a86.jpg)
-
-Sidebar:
-
-![3](https://user-images.githubusercontent.com/30154496/82138330-72877e80-9841-11ea-9c3b-f1537ec376f6.jpg)
-
-Calculation History:
-
-![4](https://user-images.githubusercontent.com/30154496/82138331-73201500-9841-11ea-8a60-e22a0150c2fd.jpg)
-
-
+![2](https://journaldev.nyc3.digitaloceanspaces.com/2018/07/android-calendar-view-output.gif)
